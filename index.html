@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCSR Stats Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+    <link rel="icon" type="image/jpeg" href="images/ranked_favicon.jpeg">
+</head>
+<body>
+
+<!-- Theme Toggle -->
+<button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+</button>
+
+<div class="container">
+
+    <!-- Search -->
+    <div id="searchArea">
+        <div class="search-hero">
+            <img class="hero-logo" src="images/ranked_favicon.jpeg" alt="MCSR Ranked logo" />
+            <h1>MCSR Ranked Stats</h1>
+            <p class="hero-sub">Track your Minecraft speedrun ranked performance</p>
+        </div>
+        <div class="search-box">
+            <div class="search-row">
+                <div class="search-input-wrap">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="text" id="usernameInput" placeholder="Enter Minecraft username…" autocomplete="off" spellcheck="false" />
+                </div>
+                <button class="btn-primary" id="searchBtn">View Stats</button>
+            </div>
+            <p class="error" id="errorMsg"></p>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div id="statsArea" class="hidden">
+        <div class="stats-header">
+            <button class="btn-secondary" id="backBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Back
+            </button>
+            <h2 id="playerName">—</h2>
+        </div>
+
+        <div class="main-layout">
+            <div class="skin-wrap">
+                <img id="skinImg" src="" alt="Player skin" />
+            </div>
+            <div class="stat-cards">
+                <div class="stat-card">
+                    <div class="label">Elo</div>
+                    <div class="value" id="sc-elo">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Rank</div>
+                    <div class="value" id="sc-rank">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Win rate</div>
+                    <div class="value" id="sc-wr">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Best time</div>
+                    <div class="value" id="sc-best">—</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="elo">Elo history</button>
+            <button class="tab" data-tab="splits">Avg splits</button>
+            <button class="tab" data-tab="matches">Match log</button>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <span class="filter-label">Mode:</span>
+            <button class="filter-btn on" data-mode="ranked">Ranked</button>
+            <button class="filter-btn" data-mode="casual">Casual</button>
+            <button class="filter-btn" data-mode="private">Private</button>
+            <span class="filter-label filter-label--spaced">Matches:</span>
+            <button class="filter-btn on" data-count="50">50</button>
+            <button class="filter-btn" data-count="100">100</button>
+        </div>
+
+        <!-- Elo Chart Tab -->
+        <div id="tab-elo">
+            <div class="chart-wrap">
+                <canvas id="eloCanvas"></canvas>
+                <div class="chart-placeholder hidden" id="chartPlaceholder">No data for this mode</div>
+            </div>
+        </div>
+
+        <!-- Splits Tab -->
+        <div id="tab-splits" class="hidden">
+            <div class="splits-wrap">
+                <h3>Average split times</h3>
+                <div id="splitsBody"></div>
+            </div>
+        </div>
+
+        <!-- Match Log Tab -->
+        <div id="tab-matches" class="hidden">
+            <div class="match-list" id="matchList"></div>
+        </div>
+    </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
