@@ -19,12 +19,23 @@ function setTab(name) {
 }
 
 /* ── Fetch & render player ── */
+function setSearchLoading(on) {
+    const btn     = document.getElementById('searchBtn');
+    const btnText = document.getElementById('searchBtnText');
+    const spinner = document.getElementById('searchBtnSpinner');
+    btn.disabled = on;
+    btnText.classList.toggle('hidden', on);
+    spinner.classList.toggle('hidden', !on);
+    spinner.classList.toggle('flex', on);
+}
+
 async function fetchStats() {
     const username = document.getElementById('usernameInput').value.trim();
     const errorMsg = document.getElementById('errorMsg');
     if (!username) return;
 
-    errorMsg.textContent = 'Fetching…';
+    setSearchLoading(true);
+    errorMsg.textContent = '';
 
     try {
         const [userRes, matchRes] = await Promise.all([
@@ -70,13 +81,14 @@ async function fetchStats() {
             ? (drawCount / rankedTotal * 100).toFixed(1) + '%'
             : '—';
 
-        errorMsg.textContent = '';
+        setSearchLoading(false);
         document.getElementById('searchArea').classList.add('hidden');
         document.getElementById('statsArea').classList.remove('hidden');
 
         setTab('elo');
 
     } catch (e) {
+        setSearchLoading(false);
         errorMsg.textContent = e.message;
     }
 }

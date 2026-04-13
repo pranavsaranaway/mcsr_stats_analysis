@@ -6,6 +6,17 @@
     <title>MCSR Stats Tracker</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: { preflight: false },
+            safelist: [
+                'animate-spin','rounded-full',
+                'flex','flex-col','items-center','justify-center',
+                'gap-2','gap-3','py-12','text-sm'
+            ]
+        }
+    </script>
     <link rel="icon" type="image/jpeg" href="images/ranked_favicon.jpeg">
     <!-- Apply saved theme before paint to avoid flash -->
     <script>(function(){var t=localStorage.getItem('mcsr-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
@@ -42,7 +53,13 @@
                     </svg>
                     <input type="text" id="usernameInput" placeholder="Enter Minecraft username…" autocomplete="off" spellcheck="false" />
                 </div>
-                <button class="btn-primary" id="searchBtn">View Stats</button>
+                <button class="btn-primary" id="searchBtn">
+                    <span id="searchBtnText">View Stats</span>
+                    <span id="searchBtnSpinner" class="hidden items-center gap-2">
+                        <span class="animate-spin rounded-full inline-block" style="width:16px;height:16px;border:2px solid #fff;border-top-color:transparent"></span>
+                        Fetching…
+                    </span>
+                </button>
             </div>
             <p class="error" id="errorMsg"></p>
         </div>

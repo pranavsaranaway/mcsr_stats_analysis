@@ -26,7 +26,11 @@ async function renderSplits() {
         return;
     }
 
-    body.innerHTML = '<p class="splits-empty">Loading split data…</p>';
+    body.innerHTML = `
+        <div class="flex flex-col items-center justify-center gap-3 py-12">
+            <div class="animate-spin rounded-full" style="width:32px;height:32px;border:2px solid var(--accent);border-top-color:transparent"></div>
+            <p class="text-sm" style="color:var(--text-2)">Loading split data…</p>
+        </div>`;
 
     // Fetch uncached match details in batches of 10
     const uncached = matches.filter(m => !matchDetails[m.id]);
