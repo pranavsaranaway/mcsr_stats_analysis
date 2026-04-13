@@ -81,6 +81,8 @@ async function fetchStats() {
             ? (drawCount / rankedTotal * 100).toFixed(1) + '%'
             : '—';
 
+        renderOutcomeCharts();
+
         setSearchLoading(false);
         document.getElementById('searchArea').classList.add('hidden');
         document.getElementById('statsArea').classList.remove('hidden');

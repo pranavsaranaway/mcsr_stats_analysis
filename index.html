@@ -107,6 +107,25 @@
             </div>
         </div>
 
+        <!-- Outcome Charts -->
+        <div class="outcome-row">
+            <div class="outcome-card">
+                <div class="outcome-title">Results</div>
+                <div class="outcome-canvas-wrap"><canvas id="chartWLD"></canvas></div>
+                <div class="outcome-legend" id="legendWLD"></div>
+            </div>
+            <div class="outcome-card">
+                <div class="outcome-title">Win types</div>
+                <div class="outcome-canvas-wrap"><canvas id="chartWins"></canvas></div>
+                <div class="outcome-legend" id="legendWins"></div>
+            </div>
+            <div class="outcome-card">
+                <div class="outcome-title">Loss types</div>
+                <div class="outcome-canvas-wrap"><canvas id="chartLosses"></canvas></div>
+                <div class="outcome-legend" id="legendLosses"></div>
+            </div>
+        </div>
+
         <!-- Tabs -->
         <div class="tabs">
             <button class="tab active" data-tab="elo">Elo history</button>
@@ -151,6 +170,7 @@
 <script src="js/state.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/theme.js"></script>
+<script src="js/outcomes.js"></script>
 <script src="js/elo.js"></script>
 <script src="js/splits.js"></script>
 <script src="js/matches.js"></script>
