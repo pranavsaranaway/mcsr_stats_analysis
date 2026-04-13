@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
     <link rel="icon" type="image/jpeg" href="images/ranked_favicon.jpeg">
+    <!-- Apply saved theme before paint to avoid flash -->
+    <script>(function(){var t=localStorage.getItem('mcsr-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
 
@@ -27,12 +29,12 @@
 
     <!-- Search -->
     <div id="searchArea">
-        <div class="search-hero">
-            <img class="hero-logo" src="images/ranked_favicon.jpeg" alt="MCSR Ranked logo" />
-            <h1>MCSR Ranked Stats</h1>
-            <p class="hero-sub">Track your Minecraft speedrun ranked performance</p>
-        </div>
         <div class="search-box">
+            <div class="search-hero">
+                <img class="hero-logo" src="images/ranked_favicon.jpeg" alt="MCSR Ranked logo" />
+                <h1>MCSR Ranked Stats</h1>
+                <p class="hero-sub">Track your Minecraft speedrun ranked performance</p>
+            </div>
             <div class="search-row">
                 <div class="search-input-wrap">
                     <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -76,6 +78,14 @@
                 <div class="stat-card">
                     <div class="label">Best time</div>
                     <div class="value" id="sc-best">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Forfeit rate</div>
+                    <div class="value" id="sc-ff">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Draw rate</div>
+                    <div class="value" id="sc-draw">—</div>
                 </div>
             </div>
         </div>
@@ -121,6 +131,12 @@
     </div>
 
 </div>
-<script src="script.js"></script>
+<script src="js/state.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/elo.js"></script>
+<script src="js/splits.js"></script>
+<script src="js/matches.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

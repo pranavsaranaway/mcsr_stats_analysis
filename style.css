@@ -152,8 +152,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 40px;
+    gap: 10px;
+    margin-bottom: 24px;
 }
 
 .hero-logo {
@@ -181,6 +181,11 @@ body {
 .search-box {
     width: 100%;
     max-width: 480px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    box-shadow: var(--shadow);
 }
 
 .search-row {
@@ -259,7 +264,7 @@ input#usernameInput {
 .stat-cards {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
 }
 
@@ -519,7 +524,7 @@ input#usernameInput {
 @media (max-width: 560px) {
     .main-layout { flex-direction: column; align-items: center; }
     .skin-wrap { width: 100%; display: flex; justify-content: center; }
-    .stat-cards { width: 100%; }
+    .stat-cards { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .tabs { overflow-x: auto; }
     .splits-grid { grid-template-columns: repeat(2, 1fr); }
     .splits-grid .split-card:last-child { grid-column: span 2; }
