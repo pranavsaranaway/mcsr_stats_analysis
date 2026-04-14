@@ -16,6 +16,7 @@ document.getElementById('themeToggle').addEventListener('click', () => {
     html.setAttribute('data-theme', next);
     localStorage.setItem('mcsr-theme', next);
 
+    renderOutcomeCharts();
     if (currentTab === 'elo' && eloChart)                 renderEloChart();
     else if (currentTab === 'splits' && splitsRadarChart) renderSplits();
 });

@@ -82,6 +82,7 @@ async function fetchStats() {
             : '—';
 
         renderOutcomeCharts();
+        localStorage.setItem('mcsr-last-user', username);
 
         setSearchLoading(false);
         document.getElementById('searchArea').classList.add('hidden');
@@ -106,6 +107,7 @@ document.getElementById('backBtn').addEventListener('click', () => {
     document.getElementById('statsArea').classList.add('hidden');
     document.getElementById('searchArea').classList.remove('hidden');
     document.getElementById('errorMsg').textContent = '';
+    localStorage.removeItem('mcsr-last-user');
 });
 
 document.querySelectorAll('.tab').forEach(btn => {
@@ -129,3 +131,12 @@ document.querySelectorAll('[data-count]').forEach(btn => {
         renderCurrentTab();
     });
 });
+
+/* ── Restore last session ── */
+(function () {
+    const last = localStorage.getItem('mcsr-last-user');
+    if (last) {
+        document.getElementById('usernameInput').value = last;
+        fetchStats();
+    }
+})();
