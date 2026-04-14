@@ -32,7 +32,10 @@ function setSearchLoading(on) {
 async function fetchStats() {
     const username = document.getElementById('usernameInput').value.trim();
     const errorMsg = document.getElementById('errorMsg');
-    if (!username) return;
+    if (!username) {
+        errorMsg.textContent = 'Please enter a username.';
+        return;
+    }
 
     setSearchLoading(true);
     errorMsg.textContent = '';
